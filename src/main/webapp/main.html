@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1 id="pagename">Blott</h1>
+		<a href="LogoutServlet">Logout</a>| <a href="javascript:myProfile()">Profile</a>|
+		<a href="javascript:getAllTopics()">Topics</a>| 
+		<a href="javascript:adminify()">Admin Portal</a>
+	</div>
+	<div id="btns"></div>
+	<div id="changeme" class="container"></div>
+
+	<script>
+	src = "webjars/bootstrap/3.3.7/js/bootstrap.min.js"
+		function getAllTopics() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("pagename").innerHTML = "Topics";
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('post',
+					'http://localhost:9999/BlottProject/ThreadsController',
+					true);
+			xhr.send();
+		}
+
+		function getMyTopics() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('get',
+					'http://localhost:9999/BlottProject/ThreadsController',
+					true);
+			xhr.send();
+		}
+
+		function threadify(id) {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('post',
+					'http://localhost:9999/BlottProject/ThreadServlet', true);
+			xhr.setRequestHeader("topics", id)
+			xhr.send();
+		}
+
+		function myProfile() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("pagename").innerHTML = "Profile";
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('post', 'http://localhost:9999/BlottProject/UserServlet',
+					true);
+			xhr.send();
+		}
+
+		function editProfile() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('get', 'http://localhost:9999/BlottProject/UserServlet',
+					true);
+			xhr.send();
+		}
+
+		function flag(pid) {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('get', 'http://localhost:9999/BlottProject/PostServlet',
+					true);
+			xhr.setRequestHeader("pid", pid);
+			xhr.send();
+		}
+
+		function adminify() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("pagename").innerHTML = "Profile";
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('post', 'http://localhost:9999/BlottProject/AdminServlet',
+					true);
+			xhr.send();
+		}
+
+		function deletePost(pid) {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('post',
+					'http://localhost:9999/BlottProject/PostsController', true);
+			xhr.setRequestHeader("post", pid);
+			xhr.send();
+		}
+
+		function viewUsers() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('get',
+					'http://localhost:9999/BlottProject/AdminController', true);
+			xhr.send();
+		}
+
+		function viewFlags() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('post', 'http://localhost:9999/BlottProject/PostServlet',
+					true);
+			xhr.send();
+		}
+
+		function addUser() {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						document.getElementById("changeme").innerHTML = xhr.responseText;
+					} else {
+						console.log("error");
+					}
+				}
+			}
+			xhr.open('get', 'http://localhost:9999/BlottProject/AdminServlet',
+					true);
+			xhr.send();
+		}
+	</script>
+</body>
+</html>
